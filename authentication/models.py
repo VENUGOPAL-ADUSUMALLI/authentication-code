@@ -6,9 +6,9 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, unique=True)
 
     phone_number = models.CharField(max_length=255, unique=True)
-    age = models.IntegerField()
-    gender = models.CharField(max_length=255)
-    address = models.TextField()
+    age = models.IntegerField(null=True, blank=True)
+    gender = models.CharField(max_length=255, null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

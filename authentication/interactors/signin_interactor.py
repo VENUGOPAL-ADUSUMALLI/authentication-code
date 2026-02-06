@@ -19,7 +19,6 @@ class SigninInteractor:
 
     def __init__(self, user_storage: UserStorage):
         self.user_storage = user_storage
-        self.signin_interactor = self
 
     def signin_interactor(self, email: str, password: str) -> Response:
 

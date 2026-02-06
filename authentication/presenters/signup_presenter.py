@@ -1,4 +1,4 @@
-def present_signup_success(user_dict: dict, tokens_dict: dict) -> dict:
+def present_signup_success(tokens_dict: dict) -> dict:
 
     return {
         'success': True,
@@ -9,7 +9,7 @@ def present_signup_success(user_dict: dict, tokens_dict: dict) -> dict:
 
 
 def present_user_already_exists(message: str) -> dict:
-
+    
     return {
         'success': False,
         'message': message,

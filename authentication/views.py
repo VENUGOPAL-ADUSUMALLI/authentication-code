@@ -10,6 +10,7 @@ from authentication.interactors.profile_interactor import ProfileInteractor
 def signup_view(request):
     email = request.data.get('email')
     password = request.data.get('password')
+    confirm_password = request.data.get('confirm_password')
     username = request.data.get('username')
     phone_number = request.data.get('phone_number')
     age = request.data.get('age')
@@ -17,7 +18,7 @@ def signup_view(request):
     address = request.data.get('address')
     profile_picture = request.data.get('profile_picture')
     user_storage = UserStorage()
-    response = SignupInteractor(user_storage).signup_interactor.signup_interactor(email=email, password=password, username=username, phone_number=phone_number, age=age, gender=gender, address=address, profile_picture=profile_picture)
+    response = SignupInteractor(user_storage).signup_interactor(email=email, password=password, confirm_password=confirm_password, username=username, phone_number=phone_number, age=age, gender=gender, address=address, profile_picture=profile_picture)
     return response
 
 
@@ -27,7 +28,7 @@ def signin_view(request):
     email = data.get('email') 
     password = data.get('password') 
     user_storage = UserStorage()
-    response = SigninInteractor(user_storage).signin_interactor.signin_interactor(email, password)
+    response = SigninInteractor(user_storage).signin_interactor(email, password)
     return response
 
 

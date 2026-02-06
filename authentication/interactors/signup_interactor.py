@@ -19,17 +19,18 @@ class SignupInteractor:
 
     def __init__(self, user_storage: UserStorage):
         self.user_storage = user_storage
-        self.signup_interactor = self
 
-    def signup_interactor(self, email: str, password: str, username: str, phone_number: str, age: int, gender: str, address: str, profile_picture: str) -> Response:
+    def signup_interactor(self, email: str, password: str, confirm_password: str, username: str, phone_number: str, age: int, gender: str, address: str, profile_picture: str) -> Response:
         try:
 
-            required_fields = ['email', 'password', 'username', 'phone_number', 'age', 'gender', 'address']
+            required_fields = ['email', 'password', 'confirm_password', 'username', 'phone_number', 'age', 'gender', 'address']
             missing_fields = []
             if not email:
                 missing_fields.append('email')
             if not password:
                 missing_fields.append('password')
+            if not confirm_password:
+                missing_fields.append('confirm_password')
             if not username:
                 missing_fields.append('username')
             if not phone_number:
@@ -43,6 +44,9 @@ class SignupInteractor:
 
             if missing_fields:
                 raise ValidationError(f"Missing required fields: {', '.join(missing_fields)}")
+
+            if password != confirm_password:
+                raise ValidationError("Password and confirm password do not match")
 
 
             try:

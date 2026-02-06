@@ -1,1 +1,9 @@
 env/
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
