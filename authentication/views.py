@@ -4,6 +4,7 @@ from authentication.storage.user_storage import UserStorage
 from authentication.interactors.signup_interactor import SignupInteractor
 from authentication.interactors.signin_interactor import SigninInteractor
 from authentication.interactors.profile_interactor import ProfileInteractor
+from authentication.interactors.google_auth_interactor import GoogleAuthInteractor
 
 
 @api_view(['POST'])
@@ -37,4 +38,12 @@ def signin_view(request):
 def profile_view(request):
     user = request.user
     response = ProfileInteractor().profile_interactor.profile_interactor(user)
+    return response
+
+
+@api_view(['POST'])
+def google_auth_view(request):
+    id_token = request.data.get('id_token')
+    user_storage = UserStorage()
+    response = GoogleAuthInteractor(user_storage).authenticate_with_google(id_token)
     return response

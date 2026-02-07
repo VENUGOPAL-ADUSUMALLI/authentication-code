@@ -1,23 +1,17 @@
-
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+SECRET_KEY='django-insecure-yeri-t^(q)4lxsex!*&)r=g=x!z!q-92oszzu#lu9o8g5xwayd'
+DEBUG=True
 
 
-
-
-SECRET_KEY = 'django-insecure-yeri-t^(q)4lxsex!*&)r=g=x!z!q-92oszzu#lu9o8g5xwayd'
-
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -62,18 +56,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'auth_backend.wsgi.application'
 
 
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -92,9 +80,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -102,9 +87,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-
 
 
 STATIC_URL = 'static/'
@@ -144,3 +126,5 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
+GOOGLE_OAUTH2_CLIENT_ID = os.getenv('GOOGLE_OAUTH2_CLIENT_ID', 'your-client-id.apps.googleusercontent.com')
